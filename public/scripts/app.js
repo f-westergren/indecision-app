@@ -1,99 +1,35 @@
 'use strict';
 
-console.log('App.js is running!');
-
-// JSX - JavaScript XML
-
-var app = {
-    title: 'My Indecision App',
-    subtitle: 'An Aweseom React Experience',
-    options: []
+var add = function add(a, b) {
+    // console.log(arguments)
+    return a + b;
 };
 
-function getOptions(opns) {
-    if (opns.length > 0) {
-        return React.createElement(
-            'p',
-            null,
-            'Here are your options: ',
-            app.options
-        );
-    }
-    return React.createElement(
-        'p',
-        null,
-        'No options'
-    );
-}
-
-var template = React.createElement(
-    'div',
-    null,
-    React.createElement(
-        'h1',
-        null,
-        app.title
-    ),
-    app.subtitle && React.createElement(
-        'p',
-        null,
-        app.subtitle
-    ),
-    React.createElement(
-        'p',
-        null,
-        app.options.length > 0 ? 'Here are your options' : 'No options'
-    ),
-    React.createElement(
-        'ol',
-        null,
-        React.createElement(
-            'li',
-            null,
-            'Item one'
-        ),
-        React.createElement(
-            'li',
-            null,
-            'Item two'
-        )
-    )
-);
+console.log(add(55, 1, 1001));
 
 var user = {
-    name: 'Folke Westergren',
-    age: 37,
-    location: 'Philadelphia'
+    name: 'Folke',
+    cities: ['Gavle', 'Nijmegen', 'Philadelphia'],
+    printPlacesLived: function printPlacesLived() {
+        var _this = this;
+
+        return this.cities.map(function (city) {
+            return _this.name + ' has lived in ' + city;
+        });
+    }
+};
+console.log(user.printPlacesLived());
+
+var multiplier = {
+    numbers: [10, 20, 30],
+    multiplyBy: 3,
+    multiply: function multiply() {
+        var _this2 = this;
+
+        return this.numbers.map(function (num) {
+            return num * _this2.multiplyBy;
+        });
+    }
 };
 
-function getLocation(location) {
-    if (location) {
-        return React.createElement(
-            'p',
-            null,
-            'Location: ',
-            location
-        );
-    }
-}
-
-var templateTwo = React.createElement(
-    'div',
-    null,
-    React.createElement(
-        'h1',
-        null,
-        user.name ? user.name : 'Anonymous'
-    ),
-    user.age && user.age >= 18 && React.createElement(
-        'p',
-        null,
-        'Age: ',
-        user.age
-    ),
-    getLocation(user.location)
-);
-
-var appRoot = document.getElementById('app');
-
-ReactDOM.render(template, appRoot);
+console.log(multiplier.multiply());
