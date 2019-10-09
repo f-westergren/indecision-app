@@ -1,35 +1,30 @@
 'use strict';
 
-var add = function add(a, b) {
-    // console.log(arguments)
-    return a + b;
+var visibility = false;
+
+var toggleVisibility = function toggleVisibility() {
+    visibility = !visibility;
+    render();
 };
 
-console.log(add(55, 1, 1001));
+var render = function render() {
+    var jsx = React.createElement(
+        'div',
+        null,
+        React.createElement(
+            'h1',
+            null,
+            'Visibility Toggle'
+        ),
+        React.createElement(
+            'button',
+            { onClick: toggleVisibility },
+            visibility ? 'Hide Details' : 'Show Details'
+        ),
+        React.createElement('p', null)
+    );
 
-var user = {
-    name: 'Folke',
-    cities: ['Gavle', 'Nijmegen', 'Philadelphia'],
-    printPlacesLived: function printPlacesLived() {
-        var _this = this;
-
-        return this.cities.map(function (city) {
-            return _this.name + ' has lived in ' + city;
-        });
-    }
-};
-console.log(user.printPlacesLived());
-
-var multiplier = {
-    numbers: [10, 20, 30],
-    multiplyBy: 3,
-    multiply: function multiply() {
-        var _this2 = this;
-
-        return this.numbers.map(function (num) {
-            return num * _this2.multiplyBy;
-        });
-    }
+    ReactDOM.render(jsx, document.getElementById('app'));
 };
 
-console.log(multiplier.multiply());
+render();
