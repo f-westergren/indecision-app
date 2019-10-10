@@ -1,18 +1,21 @@
 let visibility = false;
 
 const toggleVisibility = () => {
-    visibility = !visibility; 
+    visibility = !visibility;
     render();
 }
-
 
 const render = () => {
     const jsx = (
         <div>
             <h1>Visibility Toggle</h1>
             <button onClick={toggleVisibility}>{visibility ? 'Hide Details' : 'Show Details'}</button>
-            <p></p>
-        </div>
+            {visibility && (
+                <div>
+                    <p>Hey, this is the secret text!</p>
+                </div>
+            )}
+        </div> 
     );
 
     ReactDOM.render(jsx , document.getElementById('app'));
